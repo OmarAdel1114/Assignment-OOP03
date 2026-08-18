@@ -9,15 +9,7 @@ namespace Assignment_OOP01
             #region Part 01
 
             #region Question 01
-            /*
-             a) The difference between a class and a struct are:
-                  - A class is a reference type, while a struct is a value type.
-                 - A class can have inheritance, while a struct cannot 
-                 - A class can have a default constructor, while a struct cannot have a default constructor.
-             */
-            /*
-             b) Classes are more suitable for large projects because they support inheritance,and they support complex data structures
-             */
+           
 
             #endregion
 
