@@ -4,15 +4,11 @@ using System.Text;
 
 namespace Assignment_OOP01.Shipments
 {
-
-    internal class StandardShipment : Shipment
+    internal sealed class CompletedShipment : Shipment
     {
-        public StandardShipment(string trackingCode, string description, int weight, decimal deliveryFee, DeliveryAddress destination)
+        public CompletedShipment(string trackingCode, string description, int weight, decimal deliveryFee, DeliveryAddress destination)
             : base(trackingCode, description, weight, deliveryFee, destination)
         {
         }
-
     }
-
-
 }

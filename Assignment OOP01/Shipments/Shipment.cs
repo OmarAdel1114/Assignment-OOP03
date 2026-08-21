@@ -54,7 +54,7 @@ namespace Assignment_OOP01.Shipments
 			get { return destination; }
 			set { value = destination; }
 		}
-        public decimal EstimatedCost { get {return DeliveryFee + (Weight * 5); } }
+        public virtual decimal EstimatedCost { get {return DeliveryFee + (Weight * 5); } }
 
 
      
@@ -92,11 +92,23 @@ namespace Assignment_OOP01.Shipments
                 DeliveryFee = (int)newFee;
         }
 
-        public string PrintShipment() { 
-        return $"Tracking Code: {trackingCode}\nDescription: {description}\nWeight: {weight}\nDelivery Fee: {deliveryFee}\nDestination: {destination.GetFullAddress()}\nEstimated Cost: {EstimatedCost}";
-        }
+        public virtual string PrintShipment() { 
+        return $"Tracking Code: {trackingCode}\nDescription: {description}\nWeight: {weight}\nDelivery Fee: " +
+                $"{deliveryFee}\nDestination: {destination.GetFullAddress()}\nEstimated Cost: {EstimatedCost}"; }
        
-    
+        public int UpdateWeight(int newWeight)
+        {
+            if (newWeight > 0)
+                Weight = newWeight;
+            return Weight;
+        }
+
+        public  int UpdateWeight(long extraPack)
+        {
+            if (extraPack > 0)
+                Weight += (int)extraPack;
+            return Weight;
+        }   
 
 
 

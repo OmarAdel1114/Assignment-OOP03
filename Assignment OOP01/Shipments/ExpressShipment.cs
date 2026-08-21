@@ -19,7 +19,13 @@ namespace Assignment_OOP01.Shipments
             set { if (value >= 0) extraFee = value; }
         }
 
-        public decimal EstimatedCost { get { return DeliveryFee + (Weight * 5) + ExtraFee; } 
+        public override decimal EstimatedCost { get { return DeliveryFee + (Weight * 5) + ExtraFee; } }
+
+
+        public override string PrintShipment()
+        {
+            return $"Tracking Code: {base.TrackingCode}\nDescription: {base.Description}\nWeight: {base.Weight}\nDelivery Fee: " +
+                    $"{base.DeliveryFee}\nExtra Fee:{ExtraFee}\nDestination: {base.Destination.GetFullAddress()}\nEstimated Cost: {EstimatedCost}";
         }
 
     }

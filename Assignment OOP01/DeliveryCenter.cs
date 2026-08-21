@@ -10,6 +10,7 @@ namespace Assignment_OOP01
 
         private string centerName;
         private Shipment[] shipments = new Shipment[20];
+        public Driver Driver { get; set; }
         public Shipment this[int index]
         {
             get
@@ -50,7 +51,7 @@ namespace Assignment_OOP01
             set { centerName = value;  }
         }
 
-        public bool AddShipment(Shipment shipment)
+        public bool AddShipment(Shipment shipment, Driver driver)
         {
             for (int i = 0; i < shipments.Length; i++)
             {
@@ -83,25 +84,8 @@ namespace Assignment_OOP01
             {
                 if (shipments[i] == null)
                     continue;
-
-                Console.WriteLine($"--- Shipment {i + 1} ---");
-
-                Console.WriteLine($"Tracking Code: {shipments[i].TrackingCode}");
-                Console.WriteLine($"Description: {shipments[i].Description}");
-                Console.WriteLine($"Weight: {shipments[i].Weight}");
-                Console.WriteLine($"Delivery Fee: {shipments[i].DeliveryFee}");
-                Console.WriteLine($"Destination: {shipments[i].Destination.City}");
-
-               if (shipments[i] is ExpressShipment express)
-                {
-                    Console.WriteLine($"Extra Fee: {express.ExtraFee}");
-                }
-                else if (shipments[i] is InternationalShipment international)
-                {
-                    Console.WriteLine($"Destination Country: {international.DestinationCountry}");
-                    Console.WriteLine($"Customs Fee: {international.CustomsFee}");
-                }
-
+                Shipment shipment = shipments[i];
+                Console.WriteLine(shipment.PrintShipment());
                 Console.WriteLine();
             }
         }

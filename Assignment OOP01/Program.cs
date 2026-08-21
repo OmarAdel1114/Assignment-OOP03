@@ -9,22 +9,30 @@ namespace Assignment_OOP01
             #region Part 01
 
             #region Question 01
-           
+            /*
+             a) The difference between method overloading and method overriding 
+                 that in method overloading you must implement the method with the same implementation but with different parameters
+                 but in method overriding you can use the same method name and paarameters but you change the implementation
+
+             b)  the difference between Static Binding and Dynamic Binding
+                 That in static binding the method to be called is determined at compile time
+                 while in dynamic binding the method to be called is determined at runtime
+
+             */
 
             #endregion
 
             #region Question 02
-            // a) The parent class is shipment
-            // b) The child class is ExpressShipment
-            // c) TrackingCode
-            // d) Because duplicating the same code multiple time makes the code harder to maintain and increases the risk of bugs and errors
-
+            // a) The purpose of the sealed keyword in class is to prevent the class from being inherited by other classes.
+            // b) Sealed class means no one can inherit this class, while Sealed method means no one can override this method
+            // c) Sealed method can not be overridden
 
             #endregion
             #endregion
 
             #region Part 02      
             DeliveryCenter deliveryCenter = new DeliveryCenter();
+            Driver driver = new Driver(1,"Driver name",01275156274);
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine("Please Choose Your Shipment Type: \n1) Standard Shipment \n2) Express Shipment \n3) International Shipment");
@@ -56,7 +64,7 @@ namespace Assignment_OOP01
 
                             Shipment standardShipment = new StandardShipment(
                                 trackingCode, description, weight, deliveryFee, destination);
-                            deliveryCenter.AddShipment(standardShipment);
+                            deliveryCenter.AddShipment(standardShipment, driver);
                             Console.WriteLine("Shipment added Successfully");
 
                             break;
@@ -88,7 +96,7 @@ namespace Assignment_OOP01
 
                             Shipment expressShipment = new ExpressShipment(
                                 extraFee, trackingCode, description, weight, deliveryFee, destination);
-                            deliveryCenter.AddShipment(expressShipment);
+                            deliveryCenter.AddShipment(expressShipment, driver);
                             Console.WriteLine("Shipment added Successfully");
                             break;
                         }
@@ -124,7 +132,7 @@ namespace Assignment_OOP01
 
                             Shipment internationalShipment = new InternationalShipment(
                                 destinationCountry, customsFee, trackingCode, description, weight, deliveryFee, destination);
-                            deliveryCenter.AddShipment(internationalShipment);
+                            deliveryCenter.AddShipment(internationalShipment, driver);
                             Console.WriteLine("Shipment added Successfully");
                         }
                         break;
@@ -133,6 +141,8 @@ namespace Assignment_OOP01
                         break;
                 }
             }
+            Console.WriteLine();
+            Console.WriteLine("All Shipments:");
             deliveryCenter.PrintAllShipments();
 
             Console.Write("Enter Tracking Code to search: ");
@@ -141,12 +151,13 @@ namespace Assignment_OOP01
             if (foundShipment != null)
             {
                 Console.WriteLine("Found:");
-                Console.WriteLine($"Tracking Code: {foundShipment.TrackingCode}");
-                Console.WriteLine($"Description: {foundShipment.Description}");
-                Console.WriteLine($"Weight: {foundShipment.Weight}");
-                Console.WriteLine($"Delivery Fee: {foundShipment.DeliveryFee}");
-                Console.WriteLine($"Estimated Cost: {foundShipment.EstimatedCost}");
-                Console.WriteLine($"Destination: {foundShipment.Destination.City}");
+                foundShipment.PrintShipment();
+                //Console.WriteLine($"Tracking Code: {foundShipment.TrackingCode}");
+                //Console.WriteLine($"Description: {foundShipment.Description}");
+                //Console.WriteLine($"Weight: {foundShipment.Weight}");
+                //Console.WriteLine($"Delivery Fee: {foundShipment.DeliveryFee}");
+                //Console.WriteLine($"Estimated Cost: {foundShipment.EstimatedCost}");
+                //Console.WriteLine($"Destination: {foundShipment.Destination.City}");
             }
             else
             {
@@ -157,10 +168,14 @@ namespace Assignment_OOP01
             bool isDeleted = deliveryCenter.RemoveShipment(deliveryCenter[deleteCode]);
 
             deliveryCenter.PrintAllShipments();
-
+            
+            // Made a Sealed called CompletedShipment Class inside shipments folder
+            // The Class PriorityInternationalShipment inherits from InternationalShipment and has a sealed override method
 
             #endregion
+
         }
+
         }
     }
 
